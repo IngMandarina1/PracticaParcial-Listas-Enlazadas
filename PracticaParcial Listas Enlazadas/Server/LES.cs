@@ -45,7 +45,7 @@
                 UltimoNodo = nuevoNodo;
 
             }
-            return $"Se creo el nodo {nuevoNodo.Informacion}";
+            return $"Se insertor nodo {nuevoNodo.Informacion}";
         }
 
     }
