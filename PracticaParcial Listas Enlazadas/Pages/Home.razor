@@ -1,0 +1,52 @@
+﻿@using PracticaParcial_Listas_Enlazadas.Server;
+@page "/"
+
+<PageTitle>Listas enlazadas</PageTitle>
+
+
+<input type="text" @bind=valor class="form-control" />
+<br/>
+<button @onclick="AgregarAlInicio" >Insertar Nodo al inicio</button>
+<button @onclick="AgregarAlFinal">Insertar Nodo al final</button>
+
+<p>@mensaje</p>
+
+<ul class="list-group">
+	@{
+		Nodo Temporal = lista.PrimerNodo;
+		while (Temporal != null)
+		{
+			<li class="list-group-item">@Temporal.Informacion</li>
+			Temporal = Temporal.Referencia;
+		}  
+	}
+</ul>
+
+@code {
+	public string valor { get; set; }
+	public string mensaje { get; set; }
+	public LES lista { get; set; }
+
+	protected override void OnInitialized()
+	{
+		lista = new LES();
+		base.OnInitialized();
+	}
+
+	Nodo crearNodo()
+	{
+		return new Nodo(valor);
+	}
+
+
+	public void AgregarAlInicio()
+	{
+		mensaje = lista.InsetarNodoAlInicio(crearNodo());
+	}
+
+	public void AgregarAlFinal()
+	{
+		mensaje = lista.InsetarNodoAlFinal(crearNodo());
+	}
+
+}
