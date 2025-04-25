@@ -8,6 +8,19 @@
 <br/>
 <button @onclick="AgregarAlInicio" >Insertar Nodo al inicio</button>
 <button @onclick="AgregarAlFinal">Insertar Nodo al final</button>
+<br />
+<input type="text" @bind=buscar class="form-control"/>
+<br />
+<button @onclick="AgregarAntesDatoX">Insertar Valor Antes de dato Buscado</button>
+<button @onclick="AgregarDespuesDatoX">Insertar Valor Despues de dato Buscado</button>
+<br /><br />
+<input type="text" @bind=posicion class="form-control"/>
+<button @onclick="AgregarEnPosicionX">Insertar Posicion</button>
+<button @onclick="AgregarAntesEnPosicionX">Insertar Antes Posicion</button>
+<button @onclick="AgregarDespuesEnPosicionX">Insertar Antes Posicion</button>
+<br />
+<input type="text" @bind=buscar class="form-control" />
+<button @onclick="buscarnodoX">Buscarn</button>
 
 <p>@mensaje</p>
 
@@ -25,6 +38,8 @@
 @code {
 	public string valor { get; set; }
 	public string mensaje { get; set; }
+	public string buscar { get; set; }
+	public int posicion { get; set; }
 	public LES lista { get; set; }
 
 	protected override void OnInitialized()
@@ -47,6 +62,33 @@
 	public void AgregarAlFinal()
 	{
 		mensaje = lista.InsetarNodoAlFinal(crearNodo());
+	}
+
+	public void AgregarAntesDatoX()
+	{
+		mensaje = lista.InsertarAntesDatoX(crearNodo(), buscar);
+	}
+
+	public void AgregarDespuesDatoX()
+	{
+		mensaje = lista.InsertarDespuesDatoX(crearNodo(), buscar);
+	}
+	public void AgregarEnPosicionX()
+	{
+		mensaje = lista.InsetarEnPosicionEspecifica(crearNodo(), posicion);
+	}
+	public void AgregarAntesEnPosicionX()
+	{
+		mensaje = lista.InsertarAnntesPosicionEspecifica(crearNodo(), posicion);
+	}
+	public void AgregarDespuesEnPosicionX()
+	{
+		mensaje = lista.InsertarDespuesPosicionEspecifica(crearNodo(), posicion);
+	}
+
+	public void buscarnodoX()
+	{
+		mensaje = lista.Buscar(buscar);
 	}
 
 }
